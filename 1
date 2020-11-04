@@ -1,0 +1,35 @@
+import pygame
+import math
+import random
+random.seed
+FPS = 60
+black = (0,0,0)
+green = (0, 255, 50)
+pygame.init()
+sc = pygame.display.set_mode((600, 600))
+st = pygame.display.set_caption('Примитив')
+R = 30
+X = random.randint(R+1, 599-R)
+Y = random.randint(R+1, 599-R)
+M = 1
+P=1
+Px = 1
+Py= 3
+
+
+direct_x = P/M/math.sqrt((Px)^2+(Py)^2)*(Px*Px)
+direct_y= -P/M/math.sqrt((Px)^2+(Py)^2)*(Py*Py)
+clock = pygame.time.Clock()
+print(direct_x)
+print(direct_y)
+while 1:
+	sc.fill(black)
+	for i in pygame.event.get():
+		if i.type == pygame.QUIT: exit()
+	pygame.draw.circle(sc, green, (int(X), int(Y)), R)
+	pygame.display.update()
+	X +=direct_x
+	Y +=direct_y
+	if (X >= 600 - R) or (X <= R): direct_x = -direct_x
+	if (Y >= 600 - R) or (Y <= R): direct_y = -direct_y 
+	clock.tick(FPS)
