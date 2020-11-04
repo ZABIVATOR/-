@@ -19,6 +19,20 @@ class  circle():
 		self.p = P
 		self.a = a
 	
+	def square (self):
+		S=self.r*self.r*3.14
+		return S
+	
+	def lenth (self):
+		L=2*self.r*3.14
+		return L
+	
+	def speed(self):
+		return self.p/self.m
+			
+	def kord(self):
+		return self.x, self.y
+		
 	def show(self):
 		direct_x = self.p*math.cos(math.radians(self.a))/self.m
 		direct_y= self.p*math.sin(math.radians(self.a))/self.m
