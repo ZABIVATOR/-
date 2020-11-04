@@ -4,32 +4,37 @@ import random
 random.seed
 FPS = 60
 black = (0,0,0)
-green = (0, 255, 50)
+green = (255, 255, 255)
 pygame.init()
 sc = pygame.display.set_mode((600, 600))
 st = pygame.display.set_caption('Примитив')
-R = 30
-X = random.randint(R+1, 599-R)
-Y = random.randint(R+1, 599-R)
-M = 1
-P=1
-Px = 1
-Py= 3
+
+class  circle():
+	
+	def __init__(self, R, M, P, a):
+		self.r = R
+		self.x = random.randint(R, 600-R)
+		self.y = random.randint(R, 600-R)
+		self.m = M
+		self.p = P
+		self.a = a
+	
+	def show(self):
+		direct_x = self.p*math.cos(math.radians(self.a))/self.m
+		direct_y= self.p*math.sin(math.radians(self.a))/self.m
+		clock = pygame.time.Clock()
+		while 1:
+			sc.fill(black)
+			for i in pygame.event.get():
+				if i.type == pygame.QUIT: exit()
+			pygame.draw.circle(sc, green, (int(self.x), 600-int(self.y)),self.r)
+			pygame.display.update()
+			self.x += direct_x 
+			self.y += direct_y
+			if (self.x >= 600 - self.r) or (self.x <= self.r): direct_x = -direct_x
+			if (self.y >= 600 - self.r) or (self.y <= self.r): direct_y = -direct_y 
+			clock.tick(FPS)
 
 
-direct_x = P/M/math.sqrt((Px)^2+(Py)^2)*(Px*Px)
-direct_y= -P/M/math.sqrt((Px)^2+(Py)^2)*(Py*Py)
-clock = pygame.time.Clock()
-print(direct_x)
-print(direct_y)
-while 1:
-	sc.fill(black)
-	for i in pygame.event.get():
-		if i.type == pygame.QUIT: exit()
-	pygame.draw.circle(sc, green, (int(X), int(Y)), R)
-	pygame.display.update()
-	X +=direct_x
-	Y +=direct_y
-	if (X >= 600 - R) or (X <= R): direct_x = -direct_x
-	if (Y >= 600 - R) or (Y <= R): direct_y = -direct_y 
-	clock.tick(FPS)
+rheu = circle(25, 0.2,1,10)
+rheu.show()
