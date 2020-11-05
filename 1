@@ -33,6 +33,12 @@ class  circle():
 	def kord(self):
 		return self.x, self.y
 		
+	def force(self,f,a,t):
+		px=self.p*math.cos(self.a)
+		py=self.p*math.sin(self.a)
+		self.p=math.sqrt((px+f*math.cos(a)*t)*(px+f*math.cos(a)*t)+(py+f*math.sin(a)*t)*(py+f*math.sin(a)*t))
+		self.a=math.acos(px/self.p)
+		
 	def show(self):
 		direct_x = self.p*math.cos(math.radians(self.a))/self.m
 		direct_y= self.p*math.sin(math.radians(self.a))/self.m
